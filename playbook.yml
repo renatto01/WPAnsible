@@ -105,6 +105,7 @@
         name: nginx
         state: reloaded
     
+  #TESTE COMMIT
 
    # - name: modulo alternativo Baixando pasta Wordpress e Forcando instalacao
     #  get_url:
