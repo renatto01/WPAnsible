@@ -1,0 +1,35 @@
+---
+
+
+- name: Instalando a dependencia do MySql para comunicacao com python
+  yum:
+    name:
+        - MySQL-python
+
+- name: Desativando SElinux
+  selinux:
+    state: disabled
+
+- name: instalar MariaDB
+  yum:
+    name: mariadb-server
+    state: present
+
+
+- name: Ativando Mysql
+  service:
+    name: mariadb
+    state: started
+    enabled: yes
+
+- name: Criando usuario no Banco
+  mysql_user:
+    name: root
+    password: ""
+    priv: '*.*:ALL,GRANT'
+    state: present
+
+- name: Criando uma novo Banco com nome 'wordpress'
+  mysql_db:
+    name: wordpress
+    state: present

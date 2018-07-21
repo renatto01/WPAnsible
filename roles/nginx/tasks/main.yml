@@ -1,0 +1,20 @@
+---
+
+
+  - name: instalando epel repositorio
+    yum:
+      name: epel-release
+      state: present
+
+  - name: instalando nginx
+    yum:
+      name:
+        - nginx
+        - htop
+      state: present
+
+  - name: Ativando e Iniciando Nginx
+    service:
+      name: nginx
+      state: started
+      enabled: yes

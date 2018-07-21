@@ -1,0 +1,47 @@
+---
+
+
+- name: instalando php-fpm
+  yum:
+    name: php-fpm
+    state: present
+
+- name: Instalando o php-mysql
+  yum:
+    name: php-mysql
+    state: present
+
+- name: Ativar php-fpm
+  service:
+    name: php-fpm
+    state: started
+    enabled: true
+
+- name: Criando arquivo php info
+  copy:
+   dest: "/usr/share/nginx/html/info.php"
+   content: <?php phpinfo() ?>
+
+- name: Configura php-fpm no nginx
+  copy:
+    dest: /etc/nginx/conf.d/localhost.conf
+    content: '
+    server {
+        listen 80;
+        server_name localhost;
+        root /usr/share/nginx/html;
+        index index.php index.html index.htm;
+
+        location ~ \.php$ {
+            fastcgi_split_path_info ^(.+\.php)(/.+)$;
+            fastcgi_pass 127.0.0.1:9000;
+            fastcgi_index index.php;
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            include fastcgi_params;
+        }
+    }'
+
+- name: Reinicia o nginx
+  service:
+    name: nginx
+    state: reloaded
