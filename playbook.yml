@@ -7,11 +7,11 @@
   become: true
 
   roles:
-    - mariadb
     - nginx
+    - mariadb
     - php-fpm
     - wordpress
-    
+
 
   #TESTE COMMIT
 
