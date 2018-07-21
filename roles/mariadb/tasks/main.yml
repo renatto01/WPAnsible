@@ -24,7 +24,7 @@
 
 - name: Criando usuario no Banco
   mysql_user:
-    name: root
+    name: wordpress
     password: ""
     priv: '*.*:ALL,GRANT'
     state: present
