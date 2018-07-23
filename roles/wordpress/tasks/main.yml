@@ -1,20 +1,15 @@
 ---
 
 
-- name: Criando uma novo Banco com nome 'wordpress'
-  mysql_db:
-    name: wordpress
-    state: present
-
 - name: Baixando Wordpress e Descompactando
   unarchive:
     src: https://wordpress.org/latest.tar.gz
-    dest: /usr/share/nginx/html
+    dest: /var/www/html
     remote_src: yes
 
 - name: Alterando permissão da pasta wordpress
   file:
-    path: "/usr/share/nginx/html/wordpress"
+    path: "/var/www/html/wordpress"
     state: directory
     owner: nginx
     group: nginx

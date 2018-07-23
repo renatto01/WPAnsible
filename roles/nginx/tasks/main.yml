@@ -13,6 +13,11 @@
         - htop
       state: present
 
+  - name: criando diretorio boas praticas
+    file :
+      path :  /var/www/html
+      state :  directory
+          
   - name: Ativando e Iniciando Nginx
     service:
       name: nginx
