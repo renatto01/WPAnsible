@@ -1,19 +1,29 @@
 ---
 
 
+- name: install the nginx rpm from a remote repo
+  yum:
+    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+    state: present
+
+- name: install the nginx rpm from a remote repo
+  yum:
+    name: http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+    state: present
+
 - name: instalando php-fpm
   yum:
-    name: php-fpm
+    name: php70-php-fpm.x86_64
     state: present
 
 - name: Instalando o php-mysql
   yum:
-    name: php-mysql
+    name: php70-php-mysqlnd.x86_64
     state: present
 
 - name: Ativar php-fpm
   service:
-    name: php-fpm
+    name: php70-php-fpm
     state: started
     enabled: true
 
